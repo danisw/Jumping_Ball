@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 public class MapGenerator 
 {
@@ -32,13 +33,18 @@ public class MapGenerator
 	
 	public void draw(Graphics2D g)
 	{
+
+		Color brickColor = new Color(214,82, 24);
+
 		for(int i = 0; i<map.length; i++)
 		{
 			for(int j =0; j<map[0].length; j++)
 			{
 				if(map[i][j] > 0)
 				{
-					g.setColor(Color.white);
+
+					// this is for colouring the brick
+					g.setColor(brickColor);
 					g.fillRect(j * brickWidth + 80, i * brickHeight + 50, brickWidth, brickHeight); // posisi koordinat x = jumlah baris +80, jumlah kolom+50
 					
 					// this is just to show separate brick, game can still run without it

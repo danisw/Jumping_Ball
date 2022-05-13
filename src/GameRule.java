@@ -1,14 +1,12 @@
-import java.util.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 
 import java.awt.*;
 
-import javax.swing.*;
 import javax.swing.Timer;
 
-public class Gameplay extends JPanel implements KeyListener, ActionListener 
+public class GameRule extends JPanel implements KeyListener, ActionListener
 {
 
 	private boolean play = false;
@@ -32,7 +30,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 	
 	private MapGenerator map;
 	
-	public Gameplay()
+	public GameRule()
 	{		
 		map = new MapGenerator(4, 12); // inisiasi jumlah kolom dan baris balok
 		addKeyListener(this);
@@ -45,7 +43,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 	public void paint(Graphics g)
 	{    		
 		// background
-		g.setColor(Color.PINK);
+		Color bgcolor = new Color(205, 243, 251);
+		g.setColor(bgcolor);
 		g.fillRect(1, 1, 692, 592); // koordinat 1,1 dari kiri atas
 		
 		// drawing map
@@ -56,15 +55,16 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 		g.fillRect(0, 0, 3, 592);
 		g.fillRect(0, 0, 692, 3);
 		g.fillRect(691, 0, 3, 592);
+
 		
 		// the scores 		
-		g.setColor(Color.darkGray);
+		g.setColor(Color.black);
 		g.setFont(new Font("serif",Font.BOLD, 25));
-		g.drawString(""+score, 590,30);
+		g.drawString("Score : "+score, 500,30);
 		
 		// the paddle atau penampol
 		g.setColor(Color.darkGray);
-		g.fillRect(playerX, 550, 100, 8);
+		g.fillRect(playerX, 500, 100, 10);
 
 		// border ball
 		g.setColor(Color.black);
@@ -125,7 +125,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 		{          
 			if(playerX < 10)
 			{
-				playerX = 10; //posisi awal di koordinat x 600
+				playerX = 10; //posisi awal di koordinat x 10
 			}
 			else
 			{
@@ -136,6 +136,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 		{          
 			if(!play)
 			{
+				// level lebih mudah krn habis gagal
 				play = true;
 				ballposX = 120;
 				ballposY = 350;
@@ -176,12 +177,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener
 				ballYdir = -ballYdir;
 				ballXdir = -2;
 			}
-			else if(new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 70, 550, 30, 8)))
+			else if(new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 70, 500, 30, 8)))
 			{
 				ballYdir = -ballYdir;
 				ballXdir = ballXdir + 1;
 			}
-			else if(new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 30, 550, 40, 8)))
+			else if(new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 30, 500, 40, 8)))
 			{
 				ballYdir = -ballYdir;
 			}
